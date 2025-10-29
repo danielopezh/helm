@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mi-deployment-3
+  name: mi-deployment-3-{{ .Values.metadata.labels.app }}
   namespace: daniel-lopez-fisa-dev
   labels:
-    app: mi-app-3
+    app: {{ .Values.metadata.labels.app }}
     areanegocio: tecnologia
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mi-app-3
+      app: {{ .Values.metadata.labels.app }}
   template:
     metadata:
       labels:
-        app: mi-app-3
+        app: {{ .Values.metadata.labels.app }}
     spec:
       containers:
         - name: contenedor-principal
-          image: danielopezh/oc-2:build-{{ .Values.container.tag }}  # <-- Reemplaza con la imagen que quieras usar
+          image: {{ .Values.container.image }}:build-{{ .Values.container.tag }}  # <-- Reemplaza con la imagen que quieras usar
           imagePullPolicy: Always
           ports:
             - containerPort: {{ .Values.container.port }}
           resources:
             requests:
-              cpu: "200m"
-              memory: "300Mi"
+              cpu: {{ .Values.container.resources.requests.cpu }}
+              memory: {{ .Values.container.resources.requests.memory }}
             limits:
-              cpu: "400m"
-              memory: "500Mi"
+              cpu: {{ .Values.container.resources.limits.cpu }}
+              memory: {{ .Values.container.resources.limits.memory }}
           startupProbe:
             httpGet:
               path: /startup
-              port: 3000
+              port: {{ .Values.container.port }}
             failureThreshold: 5
             periodSeconds: 10
