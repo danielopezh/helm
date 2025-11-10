@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: dlh-hpa-3-{{ .Values.metadata.labels.app }}
-  namespace: daniel-lopez-fisa-dev
+  namespace: daniel-lopez-fisag-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

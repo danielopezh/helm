@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mi-servicio-3-{{ .Values.metadata.labels.app }}
-  namespace: daniel-lopez-fisa-dev  # Asegúrate de que coincida con tu Deployment
+  namespace: daniel-lopez-fisag-dev  # Asegúrate de que coincida con tu Deployment
 spec:
   selector:
     app: {{ .Values.metadata.labels.app }}  # Debe coincidir con las labels del Deployment

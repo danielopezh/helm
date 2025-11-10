@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mi-deployment-3-{{ .Values.metadata.labels.app }}
-  namespace: daniel-lopez-fisa-dev
+  namespace: daniel-lopez-fisag-dev
   labels:
     app: {{ .Values.metadata.labels.app }}
     areanegocio: tecnologia
